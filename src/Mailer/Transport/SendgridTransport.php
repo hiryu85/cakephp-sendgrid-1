@@ -78,7 +78,7 @@ class SendgridTransport extends AbstractTransport
         $response = $sendgrid->send($email);
         if ($response->statusCode() >= 400) {
             $errors = [];
-            foreach (json_decode($response->body())->errors as $error) {
+            foreach (json_decode($response->getBody())->errors as $error) {
                 $errors[] = $error->field . ": " . $error->message;
             }
 
